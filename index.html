@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จดหมายจากนายศุภ ถึง ผอมกลัด 💚</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Mali:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Mali', cursive; 
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 50%, #FFF9E6 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; 
+            margin: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .heart-float {
+            position: fixed;
+            font-size: 20px;
+            opacity: 0.3;
+            animation: float 15s infinite ease-in-out;
+            pointer-events: none;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-30px) rotate(10deg); opacity: 0.6; }
+        }
+
+        #start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 50%, #FFF9E6 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 0.8s ease-out;
+        }
+        .animate-fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .welcome-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #2E7D32;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .start-button {
+            position: relative;
+            padding: 20px 50px;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, #66BB6A 0%, #81C784 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(102, 187, 106, 0.4);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(102, 187, 106, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 40px rgba(102, 187, 106, 0.6); }
+        }
+
+        .start-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(102, 187, 106, 0.7);
+            animation: none;
+        }
+
+        #gift-box-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            display: none;
+        }
+        #gift-box-container.show {
+            display: block;
+            animation: bounceIn 0.8s ease-out;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        #gift-box-container:hover {
+            transform: scale(1.05);
+        }
+
+        .box-body {
+            position: absolute;
+            width: 100%;
+            height: 70%;
+            bottom: 0;
+            background: linear-gradient(135deg, #81C784 0%, #66BB6A 100%);
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .box-lid {
+            position: absolute;
+            width: 100%;
+            height: 30%;
+            top: 0;
+            background: linear-gradient(135deg, #A5D6A7 0%, #81C784 100%);
+            border-radius: 15px 15px 5px 5px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transform-origin: bottom;
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 10;
+        }
+
+        .ribbon-vertical {
+            position: absolute;
+            width: 30px;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #FFD700 0%, #FFC107 50%, #FFD700 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 5;
+        }
+        .ribbon-horizontal {
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(to bottom, #FFD700 0%, #FFC107 50%, #FFD700 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 5;
+        }
+
+        .bow {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 60px;
+            z-index: 15;
+        }
+        .bow::before, .bow::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: #FFD700;
+            border-radius: 50% 50% 0 50%;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        .bow::before {
+            left: 0;
+            transform: rotate(-45deg);
+        }
+        .bow::after {
+            right: 0;
+            transform: rotate(45deg) scaleX(-1);
+        }
+        .bow-center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #FFC107;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+
+        .opened .box-lid {
+            transform: rotateX(-120deg) translateY(-20px);
+            opacity: 0.5;
+        }
+        .opened .box-body {
+            transform: scale(1.1);
+        }
+
+        #letters-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 900px;
+            height: 80vh;
+            display: none;
+            z-index: 50;
+            perspective: 1000px;
+        }
+        #letters-container.show {
+            display: block;
+        }
+
+        .letters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .letter-card {
+            aspect-ratio: 1.5;
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFECB3 100%);
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 1;
+        }
+        .letter-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(129, 199, 132, 0.4);
+        }
+        .letter-card::before {
+            content: '💌';
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+        .letter-card .letter-number {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2E7D32;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .letter-read-placeholder {
+            background: transparent !important;
+            border: 2px dashed #BDBDBD !important;
+            cursor: default !important;
+            pointer-events: none;
+            box-shadow: none !important;
+            transform: none !important;
+            opacity: 0.5; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #9E9E9E;
+            font-size: 14px;
+            padding: 10px;
+        }
+        .letter-read-placeholder:hover {
+            transform: none !important;
+        }
+        .letter-read-placeholder::before {
+            content: '✅ อ่านแล้ว';
+            font-size: 14px;
+            margin-bottom: 0;
+            color: #9E9E9E;
+        }
+        
+        .secret-highlight {
+            background: linear-gradient(135deg, #FFC107 0%, #FFD54F 100%);
+            border: 3px solid #E65100;
+            transform: scale(1.05);
+            z-index: 10;
+            animation: pulse-gold 2s infinite alternate;
+        }
+        .secret-highlight:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 193, 7, 0.6);
+        }
+        .secret-highlight::before {
+            content: '⭐';
+            font-size: 35px;
+            animation: rotate-star 4s infinite linear;
+        }
+        @keyframes pulse-gold {
+            from { box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4); }
+            to { box-shadow: 0 10px 25px rgba(255, 193, 7, 0.8); }
+        }
+        @keyframes rotate-star {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cake-container {
+            margin: 30px auto 40px auto;
+            width: 220px;
+            height: 180px;
+            position: relative;
+            transform-origin: bottom center;
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.25));
+            animation: slight-float 4s infinite ease-in-out;
+        }
+        @keyframes slight-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .cake-plate {
+            position: absolute;
+            width: 240px;
+            height: 18px;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #CFD8DC 0%, #B0BEC5 100%);
+            border-radius: 50%;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4), inset 0 2px 5px rgba(255,255,255,0.3);
+            z-index: 1;
+        }
+        
+        .cake-layer {
+            position: absolute;
+            width: 100%;
+            height: 75%;
+            bottom: 0;
+            background: linear-gradient(to top, #EC407A, #F48FB1, #FFCDD2);
+            border-radius: 8px;
+            box-shadow: inset 0 -15px 10px rgba(0,0,0,0.15), 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 2;
+            border: 2px solid #E91E63;
+        }
+
+        .icing {
+            position: absolute;
+            width: 100%;
+            height: 35px;
+            top: 0;
+            background: linear-gradient(to bottom, #FFFFFF 0%, #FFDDE2 100%);
+            border-radius: 8px 8px 0 0;
+            border-bottom: 5px solid #F06292;
+            z-index: 3;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .icing::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: repeating-linear-gradient(
+                90deg,
+                #FFCDD2 0px,
+                #FFCDD2 15px,
+                #F8BBD0 15px,
+                #F8BBD0 30px
+            );
+            border-radius: 0 0 5px 5px;
+        }
+        .icing::after {
+            content: 'HBD KAM';
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 26px;
+            color: #C62828;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .candle-container {
+            position: absolute;
+            top: -30px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 20px;
+            z-index: 4;
+        }
+
+        .candle {
+            width: 12px;
+            height: 35px;
+            background: linear-gradient(to top, #FFD54F, #FFC107, #FFE082);
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3), inset 1px 0 2px rgba(255,255,255,0.5);
+        }
+        .candle::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 5px;
+            background: #333;
+            border-radius: 2px 2px 0 0;
+        }
+
+        .flame {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            opacity: 0;
+            filter: drop-shadow(0 0 8px orange);
+        }
+
+        .flame-lit {
+            width: 12px;
+            height: 18px;
+            background: radial-gradient(circle at 50% 80%, #FFD700 0%, #FF9800 40%, #FF5722 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            opacity: 1;
+            box-shadow: 
+                0 0 15px 5px rgba(255, 152, 0, 0.9), 
+                0 0 25px 10px rgba(255, 193, 7, 0.7),
+                inset 0 -5px 8px rgba(255, 87, 34, 0.8);
+            animation: flicker 0.15s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scaleY(1) scaleX(1); opacity: 1; }
+            50% { transform: translateX(-50%) scaleY(1.05) scaleX(0.95); opacity: 0.9; }
+            100% { transform: translateX(-50%) scaleY(0.95) scaleX(1.05); opacity: 0.95; }
+        }
+
+        .custom-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        .custom-modal.show {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .letter-content {
+            background: linear-gradient(to bottom, #FFFEF7 0%, #FFF9E6 100%);
+            max-width: 600px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            position: relative;
+            border: 2px solid #D4AF37;
+            animation: slideUp 0.5s ease;
+        }
+
+        .password-content {
+            background: linear-gradient(to bottom, #E8F5E9 0%, #C8E6C9 100%);
+            max-width: 320px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            border: 3px solid #388E3C;
+            text-align: center;
+            animation: slideUp 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .password-content h2 {
+            font-family: 'Playfair Display', serif;
+            color: #1B5E20;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .password-input-field {
+            width: 250px;
+            padding: 12px 15px; 
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 20px; 
+            padding-right: 0; 
+            border: 2px solid #66BB6A; 
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: 'Playfair Display', serif; 
+            color: #2E7D32;
+            box-shadow: 0 0 0 5px #E8F5E9, 0 2px 5px rgba(0,0,0,0.2); 
+            background: linear-gradient(to right, 
+                transparent 16.66%, #DCE775 16.66%, #DCE775 16.86%, transparent 16.86%, 
+                transparent 33.32%, #DCE775 33.32%, #DCE775 33.52%, transparent 33.52%, 
+                transparent 49.98%, #DCE775 49.98%, #DCE775 50.18%, transparent 50.18%, 
+                transparent 66.64%, #DCE775 66.64%, #DCE775 66.84%, transparent 66.84%, 
+                transparent 83.3%, #DCE775 83.3%, #DCE775 83.5%, transparent 83.5%
+            );
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            text-indent: 1px; 
+        }
+        .password-input-field:focus {
+            border-color: #388E3C;
+            box-shadow: 0 0 0 5px #C8E6C9, 0 0 10px rgba(56, 142, 60, 0.5);
+        }
+
+        .confirm-btn {
+            width: 100%;
+            max-width: 250px;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #66BB6A 0%, #388E3C 100%);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px #1B5E20;
+            cursor: pointer;
+            transition: all 0.1s ease;
+        }
+        .confirm-btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+        .confirm-btn:hover {
+             background: linear-gradient(135deg, #388E3C 0%, #66BB6A 100%);
+        }
+
+        #password-error {
+            color: #D32F2F;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            background: #2E7D32; 
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10; 
+        }
+        .close-btn:hover {
+            background: #FFC107; 
+            color: #2E7D32;
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .letter-header {
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            text-align: center; 
+        }
+        .letter-header h2 {
+            font-family: 'Playfair Display', serif;
+            color: #2E7D32;
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .letter-body {
+            font-family: 'Mali', cursive;
+            line-height: 1.9;
+            color: #333;
+            text-align: left; 
+        }
+        .letter-body p {
+            margin-bottom: 15px;
+            text-indent: 30px;
+        }
+
+        .letter-signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            color: #388E3C;
+            text-align: right;
+            margin-top: 30px;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #81C784, #66BB6A);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 60;
+            display: none;
+        }
+        .back-btn.show {
+            display: block;
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        #music-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: #FFC107;
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 60;
+            display: none;
+        }
+        #music-toggle-btn.show {
+            display: flex;
+        }
+        #music-toggle-btn:hover {
+            transform: scale(1.1);
+            background: #FFD700;
+        }
+
+        .letters-grid::-webkit-scrollbar,
+        .letter-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .letters-grid::-webkit-scrollbar-track,
+        .letter-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .letters-grid::-webkit-scrollbar-thumb,
+        .letter-content::-webkit-scrollbar-thumb {
+            background: #81C784;
+            border-radius: 10px;
+        }
+        .letters-grid::-webkit-scrollbar-thumb:hover,
+        .letter-content::-webkit-scrollbar-thumb:hover {
+            background: #66BB6A;
+        }
+
+        @media (max-width: 640px) {
+            .welcome-title {
+                font-size: 32px;
+                padding: 0 20px;
+            }
+            .start-button {
+                font-size: 18px;
+                padding: 15px 40px;
+            }
+            .letters-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 10px;
+                padding: 15px;
+            }
+            .letter-card {
+                 aspect-ratio: 1.2;
+            }
+            .letter-content {
+                padding: 25px;
+            }
+            .letter-header h2 {
+                font-size: 22px;
+            }
+            .password-content {
+                max-width: 90%;
+            }
+            .password-input-field {
+                font-size: 20px;
+                letter-spacing: 12px;
+                max-width: 200px;
+            }
+            #music-toggle-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="bg-music" loop preload="auto">
+        <!-- เพลงหวานๆ จาก Free Music Archive -->
+        <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Impact/Kevin_MacLeod_-_01_-_Wallpaper.mp3" type="audio/mpeg">
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="heart-float" style="left: 10%; top: 20%; animation-delay: 0s;">💚</div>
+    <div class="heart-float" style="left: 80%; top: 30%; animation-delay: 2s;">💛</div>
+    <div class="heart-float" style="left: 20%; top: 70%; animation-delay: 4s;">💚</div>
+    <div class="heart-float" style="left: 90%; top: 60%; animation-delay: 6s;">💛</div>
+    <div class="heart-float" style="left: 50%; top: 15%; animation-delay: 3s;">💚</div>
+
+    <div id="start-screen">
+        <h1 class="welcome-title">จดหมายจากนายศุภ ถึง ผอมกลัด 💚</h1>
+        <p class="text-xl text-gray-700 mb-8 text-center">(มีทั้งหมด 40 ฉบับ)</p>
+        <p class="text-lg text-red-600 mb-4 text-center animate-pulse">🎵 กดปุ่มเพื่อเปิดเพลงด้วยนะ 🎵</p>
+        <button class="start-button" onclick="startExperience()">เปิดกล่องของขวัญ</button>
+    </div>
+
+    <button class="back-btn" id="back-btn" onclick="backToLetters()">
+        ← กลับ
+    </button>
+    
+    <button id="music-toggle-btn" class="music-toggle-btn" onclick="toggleMusic()">
+        <span id="music-icon">🔇</span> 
+    </button>
+
+    <div id="gift-box-container" onclick="openGiftBox()">
+        <div class="ribbon-vertical"></div>
+        <div class="ribbon-horizontal"></div>
+        <div class="bow">
+            <div class="bow-center"></div>
+        </div>
+        <div class="box-lid"></div>
+        <div class="box-body"></div>
+    </div>
+
+    <div id="letters-container">
+        <div class="letters-grid" id="letters-grid"></div>
+    </div>
+
+    <div id="letter-modal" class="custom-modal" onclick="closeModal(event, 'letter-modal')">
+        <div class="letter-content" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closeModal(null, 'letter-modal')">✕</button>
+            <div class="letter-header">
+                <h2 id="modal-title"></h2>
+                <p id="modal-date" class="text-sm text-gray-500 mt-1"></p> 
+            </div>
+            <div class="letter-body" id="modal-body"></div>
+            <div class="letter-signature" id="modal-signature"></div>
+        </div>
+    </div>
+
+    <div id="password-modal" class="custom-modal" onclick="closeModal(event, 'password-modal')">
+        <div class="password-content" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closeModal(null, 'password-modal')">✕</button>
+            <h2 id="password-modal-title">จดหมายสำคัญ!</h2>
+            <p class="text-sm text-gray-600 mb-5">กรุณาพิมพ์รหัสลับ 6 หลัก</p>
+            
+            <input type="tel" id="password-input" maxlength="6" 
+                   placeholder="กรอกรหัส 6 หลัก" class="password-input-field"
+                   oninput="document.getElementById('password-error').textContent = ''">
+
+            <button id="confirm-password-btn" class="confirm-btn" onclick="checkPassword()">
+                ยืนยัน
+            </button>
+            
+            <div class="error-message" id="password-error"></div>
+        </div>
+    </div>
+    
+    <script>
+        const SECRET_INDEX = 24;
+        const CORRECT_PASSWORD = "160667";
+        const SECRET_YOUTUBE_URL = "https://www.youtube.com/watch?v=NBIo797kLJ0"; 
+
+        const signatures = [""];
+        const contents = [
+            "เลิฟยูววววววววววววว",
+            "ขอบคุณที่เป็นกำลังใจให้ตลอดนะะะ",
+            "ขอให้สุขภาพแข็งแรงไม่เจ็บไม่ป่วยตลอดไปป",
+            " กินเยอะๆๆๆๆๆๆๆ นะะะะะะะะ จะได้มีพุงให้จับทุกวันนนน ",
+            "เรารักแก้มนะะะ สุขสันต์วันเกิดนะน้องสาวว",
+            "ยิ้มเยอะๆๆๆๆๆๆๆ ยิ้มน่ารักมากกกก",
+            "ใจเย็นๆบ้างชีวิต !!!!!! ",
+            "อยู่ด้วยกันไปนานๆนะ",
+            "มีความสุขในทุกๆวัน ไม่เศร้า ไม่ท้อ สู้ๆๆๆ",
+            "ขอบคุณสำหรับเวลาสำคัญๆที่มีให้เราตลอดเลยนะะะ",
+            "อยากได้อะไรขอให้ได้สิ่งนั้นนนน",
+            "ขอบคุณที่พยยายามเข้าใจกันมาตลอดเลยนะะะ",
+            "ไอเลิฟยู ยูเลิฟไอไหมม",
+            "หิววววววว",
+            "ขอตังค์หน่อยยยย",
+            "คิดถึงงงงง",
+            "สุขสันต์วันเกิดนะอ้วนน้อยขอให้ปีนี้เป็นปีที่ดีสำหรับแก้มนะ",
+            "อย่านอนดึกเยอะะะะะ",
+            "แก้มน่ารักมากกกก",
+            "กินแล้วอย่าอึนะ อึเหม็นมาก",
+            "ไอกาก",
+            "คิดถึงมะนาววววว",
+            "เลิฟยูน้อง",
+            "ดีใจที่ได้เจอกันนะะะะ",
+            "ขอให้แก้มสู้กับทุกอย่าง มีความสุขกับสิ่งที่ตัวเองทำไม่ว่าจะทำอะไรขอให้มีความสุขตลอดไปนะ",
+            "อยากกินเค้กกกกกกก",
+            "มาหาหน่อยยยยยย",
+            "กินข้าวบ้างเถอะะะะะ",
+            "ไอขี้วีน",
+            "อย่ามาทำคิ้วขมวด",
+            "น้อย",
+            "ขอกอดหน่อยยยย ",
+            "เลิฟๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ",
+            "แหวะะะะะะะ",
+            "HBD จ่ะน้องหนู",
+            "ไปนอนตะะะะะะะ",
+            "เราภูมิใจในตัวแก้มนะะะะ",
+            "กินน้ำเปล่าบ้างจ่ะะะ",
+            "ใส่เชนได้ยัง อยากเห็นแล้วววววว",
+            "อยากกินแซลม่อนนนนน ขอตังหน่อยยยย"
+        ];
+        
+        const letters = [];
+        for (let i = 0; i < 40; i++) {
+            const index = i % contents.length;
+            const content = contents[index];
+            const signature = signatures[index % signatures.length];
+            letters.push({
+                title: `จดหมายที่ ${i + 1}`,
+                content: `<p>${content}</p>`, 
+                signature: signature,
+                read: false,
+                isSecret: false
+            });
+        }
+        
+        letters[SECRET_INDEX] = {
+            title: letters[SECRET_INDEX].title,
+            date: "5 พฤศจิกายน 2568", 
+            content: `
+                <div style="text-align: center;">
+                    <p style="text-align: center; font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #E65100; margin-bottom: 20px;">
+                        ถึง นางสาวพัชราภรณ์ อินทรชู สุขสันต์วันเกิดนะ
+                    </p>
+                    
+                    <div class="cake-container">
+                        <div class="cake-layer">
+                            <div class="icing"></div>
+                        </div>
+                        <div class="cake-plate"></div>
+                        <div class="candle-container">
+                            <div class="candle"><div class="flame" id="flame-1"></div></div>
+                            <div class="candle"><div class="flame" id="flame-2"></div></div>
+                            <div class="candle"><div class="flame" id="flame-3"></div></div>
+                        </div>
+                    </div>
+
+                    <p class="text-lg font-bold" style="color: #2E7D32; margin-top: 30px;">
+                        เซอร์ไพรส์! กดปุ่มข้างล่างนี้เพื่อเฉลิมฉลอง
+                    </p>
+                    <button id="light-candle-btn" class="mt-5 px-8 py-3 text-lg font-bold text-white rounded-full transition duration-300" style="background: #FF9800; box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);" onclick="lightCandles()">
+                        จุดเทียนเลย! 🔥
+                    </button>
+
+                </div>
+
+                <div style="margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px;">
+                    <p style="text-indent: 0;">💝สุขสันต์วันเกิดนะน้องแก้มมม💝 โตขึ้นอีกปีแล้วนะน้องงงอายุ18แล้วนั่นน ขอให้มีแต่เรื่องราวดี ๆ และสิ่งดี ๆ เข้ามา มีความสุขมาก ๆ นะ  ดีใจที่เราได้คุยกับแก้มนะมีความสุขมากๆๆ ช่วงนี้อาจจะอยู่ในช่วงที่ไม่ค่อยดีมาก แต่เราอยากคุยด้วยตลอดเลยยย อยากกอดแก้มเยอะๆๆๆ อยากอยู่ด้วยตลอดเวลาเลยย เรารักแก้มนะะะรักแก้มมากๆๆๆขอโทษบางอย่างที่เคยทำผิดขอโทษทุกอย่างที่เราเคยทำอะไรไม่ดีกับแก้มไว้ ให้มันหายไปในวันนี้ให้หมดเลยย หลังจากนี้ขอให้แก้มมีความสุขมากๆขอให้ติดมหาลัยและคณะที่แก้มอยากเข้า เราเชื่อว่าแก้มทำได้แก้มเก่งพอที่จะทำตามเป้าหมายของตัวเองแก้มเป็นคนที่มีเป้าหมายแน่นอน อยากได้อะไรแก้มก็ต้องได้สิ่งนั้น ตอนนั้นเลยเรื่องนี้เป็นเรื่องที่ดีสำหรับแก้มมากๆ เป็นคนที่เราเจอแล้วรู้สึกชอบที่สุดเลย นิสัยดีมากก ไม่เคยโกหกเราเลยสักครั้งง น่ารักอ่ะะะะเรารักแก้มนะะะ รักแก้มที่สุดในโลก อยู่ด้วยกันนานๆเลยนะะ(ตอบข้อความนี้ด้วยถ้าอ่านแล้วว)</p>
+                   
+                </div>
+            `,
+            signature: "ถึงคนพิเศษ ",
+            isSecret: true, 
+            password: CORRECT_PASSWORD, 
+            read: false
+        };
+
+        const startScreen = document.getElementById('start-screen');
+        const giftBox = document.getElementById('gift-box-container');
+        const lettersContainer = document.getElementById('letters-container');
+        const lettersGrid = document.getElementById('letters-grid');
+        const letterModal = document.getElementById('letter-modal');
+        const passwordModal = document.getElementById('password-modal');
+        const passwordError = document.getElementById('password-error');
+        const passwordInput = document.getElementById('password-input'); 
+        const backBtn = document.getElementById('back-btn');
+        const bgMusic = document.getElementById('bg-music');
+        const musicToggleBtn = document.getElementById('music-toggle-btn');
+        const musicIcon = document.getElementById('music-icon');
+
+        let boxOpened = false;
+
+        window.currentSecretIndex = -1;
+        window.currentCardElement = null;
+
+        // ตรวจสอบสถานะเพลงเมื่อโหลดหน้า
+        window.addEventListener('load', function() {
+            console.log("🎵 เพลงโหลดแล้ว - Ready State:", bgMusic.readyState);
+            console.log("🎵 Can Play:", bgMusic.readyState >= 3);
+            
+            // แสดงข้อมูล source ที่ใช้
+            bgMusic.addEventListener('loadeddata', function() {
+                console.log("✅ เพลงพร้อมเล่น - Duration:", bgMusic.duration, "seconds");
+            });
+            
+            bgMusic.addEventListener('error', function(e) {
+                console.error("❌ เกิดข้อผิดพลาดในการโหลดเพลง:", e);
+            });
+        });
+
+        function startExperience() {
+            // บังคับเล่นเพลงทันทีเมื่อกดปุ่ม
+            if (bgMusic) {
+                bgMusic.volume = 1.0; // เสียงเต็ม 100%
+                bgMusic.muted = false;
+                
+                // พยายามเล่นหลายครั้ง
+                const attemptPlay = () => {
+                    bgMusic.play()
+                        .then(() => {
+                            console.log("✅ เพลงเล่นแล้ว! ระดับเสียง:", bgMusic.volume);
+                            musicIcon.textContent = '🎶';
+                            musicToggleBtn.classList.add('show');
+                        })
+                        .catch(error => {
+                            console.error("❌ ไม่สามารถเล่นเพลงได้:", error);
+                            // แสดงข้อความแจ้งเตือน
+                            setTimeout(() => {
+                                if (confirm("ต้องการเปิดเพลงประกอบไหมครับ?\n(กด OK เพื่อเปิดเพลง)")) {
+                                    bgMusic.play()
+                                        .then(() => {
+                                            console.log("✅ เพลงเล่นแล้วหลังกด OK");
+                                            musicIcon.textContent = '🎶';
+                                        })
+                                        .catch(e => console.error("ยังเล่นไม่ได้:", e));
+                                }
+                            }, 1000);
+                            musicIcon.textContent = '🔇';
+                            musicToggleBtn.classList.add('show');
+                        });
+                };
+                
+                attemptPlay();
+            }
+            
+            startScreen.classList.add('animate-fade-out');
+            setTimeout(() => {
+                startScreen.style.display = 'none';
+                giftBox.classList.add('show'); 
+            }, 800);
+        }
+
+        function toggleMusic() {
+            console.log("🎵 Toggle - Paused:", bgMusic.paused, "Volume:", bgMusic.volume, "Duration:", bgMusic.duration);
+            
+            if (bgMusic.paused) {
+                bgMusic.volume = 1.0; // เสียงเต็ม
+                bgMusic.play()
+                    .then(() => {
+                        console.log("✅ เล่นเพลงจาก toggle แล้ว");
+                        musicIcon.textContent = '🎶';
+                    })
+                    .catch(e => {
+                         console.error("❌ ไม่สามารถเล่นได้:", e);
+                         alert("กรุณาตรวจสอบว่าเปิดเสียงอยู่หรือไม่\nหรือลองกดปุ่มนี้อีกครั้ง");
+                    });
+            } else {
+                bgMusic.pause();
+                musicIcon.textContent = '🔇';
+                console.log("⏸️ หยุดเพลงแล้ว");
+            }
+        }
+
+        function openGiftBox() {
+            if (boxOpened) return;
+            boxOpened = true;
+            
+            giftBox.classList.add('opened');
+            
+            setTimeout(() => {
+                giftBox.style.opacity = '0';
+                giftBox.style.transform = 'scale(0.5)';
+                
+                setTimeout(() => {
+                    giftBox.style.display = 'none';
+                    showLetters();
+                }, 500);
+            }, 1000);
+        }
+
+        function showLetters() {
+            lettersContainer.classList.add('show');
+            lettersGrid.innerHTML = '';
+            
+            letters.forEach((letter, index) => {
+                const card = document.createElement('div');
+                card.className = 'letter-card';
+                card.style.animation = `fadeIn 0.5s ease ${index * 0.02}s forwards`;
+                card.style.opacity = '0';
+
+                if (letter.read) {
+                    card.classList.add('letter-read-placeholder');
+                    card.innerHTML = ''; 
+                    card.onclick = null;
+                } else {
+                    card.innerHTML = `<div class="letter-number">${letter.title}</div>`; 
+                    card.onclick = () => openLetter(index, card); 
+                    
+                    if (index === SECRET_INDEX) {
+                        card.classList.add('secret-highlight');
+                    }
+                }
+                
+                lettersGrid.appendChild(card);
+            });
+        }
+
+        function openLetter(index, cardElement) {
+            const letter = letters[index];
+
+            if (letter.isSecret) {
+                window.currentSecretIndex = index;
+                window.currentCardElement = cardElement;
+                
+                passwordInput.value = '';
+                passwordError.textContent = '';
+                passwordModal.classList.add('show');
+
+            } else {
+                displayLetterContent(index, cardElement);
+            }
+        }
+        
+        function checkPassword() {
+            const index = window.currentSecretIndex;
+            const cardElement = window.currentCardElement;
+
+            if (index === -1 || !cardElement) {
+                console.error("No active secret letter context.");
+                passwordError.textContent = "เกิดข้อผิดพลาดในการเปิดจดหมายลับ";
+                return;
+            }
+            
+            const letter = letters[index];
+            const userPassword = passwordInput.value;
+            const correctPassword = letter.password;
+
+            if (userPassword.length !== 6) {
+                passwordError.textContent = "รหัสต้องมี 6 หลักค่ะ/ครับ";
+                return;
+            }
+
+            if (userPassword === correctPassword) {
+                closeModal(null, 'password-modal');
+                displayLetterContent(index, cardElement); 
+            } else {
+                passwordError.textContent = "รหัสไม่ถูกต้อง! ลองดูคำใบ้ดีๆ นะคะ/ครับ";
+                passwordInput.value = '';
+            }
+        }
+        
+        function lightCandles() {
+            const flames = document.querySelectorAll('.flame');
+            flames.forEach((flame, index) => {
+                setTimeout(() => {
+                    flame.classList.add('flame-lit');
+                }, index * 300);
+            });
+
+            const btn = document.getElementById('light-candle-btn');
+            if (btn) {
+                btn.textContent = 'คลิกเพื่อฟังเพลงพิเศษ! 🎵';
+                btn.style.background = 'linear-gradient(135deg, #FF6F00 0%, #FF9800 100%)';
+                btn.onclick = () => window.open(SECRET_YOUTUBE_URL, '_blank'); 
+                btn.style.boxShadow = '0 5px 20px rgba(255, 152, 0, 0.7)';
+                btn.classList.add('animate-pulse');
+            }
+        }
+
+        function displayLetterContent(index, cardElement) {
+            const letter = letters[index];
+            const modalDateElement = document.getElementById('modal-date');
+            
+            document.getElementById('modal-title').textContent = letter.title;
+            
+            if (letter.date) {
+                modalDateElement.textContent = `[ วันที่: ${letter.date} ]`;
+                modalDateElement.classList.remove('hidden'); 
+            } else {
+                modalDateElement.textContent = '';
+                modalDateElement.classList.add('hidden'); 
+            }
+
+            document.getElementById('modal-body').innerHTML = letter.content;
+            document.getElementById('modal-signature').textContent = letter.signature;
+            
+            letterModal.classList.add('show');
+            backBtn.classList.add('show');
+
+            if (index === SECRET_INDEX) {
+                setTimeout(() => {
+                    const btn = document.getElementById('light-candle-btn');
+                    if (btn) {
+                         btn.textContent = 'จุดเทียนเลย! 🔥';
+                         btn.style.background = '#FF9800';
+                         btn.onclick = lightCandles;
+                         btn.style.boxShadow = '0 0 15px rgba(255, 152, 0, 0.4)';
+                         btn.classList.remove('animate-pulse');
+                         
+                         document.querySelectorAll('.flame').forEach(flame => {
+                            flame.classList.remove('flame-lit');
+                         });
+                    }
+                }, 100);
+            }
+
+            if (!letter.read) { 
+                letter.read = true; 
+                
+                cardElement.classList.remove('secret-highlight');
+                cardElement.classList.add('letter-read-placeholder');
+                cardElement.innerHTML = '';
+                cardElement.onclick = null; 
+                cardElement.style.boxShadow = 'none';
+                cardElement.style.transform = 'none';
+
+                if (letters.filter(l => !l.read).length === 0) {
+                    displayFinalMessage();
+                }
+            }
+        }
+
+        function displayFinalMessage() {
+            lettersContainer.classList.remove('show');
+            backBtn.classList.remove('show'); 
+            musicToggleBtn.classList.remove('show'); 
+            
+            const finalModal = document.createElement('div');
+            finalModal.className = 'custom-modal show';
+            finalModal.innerHTML = `
+                <div class="password-content" style="max-width: 500px; padding: 50px; border: 5px solid #66BB6A; animation: bounceIn 1s ease-out;">
+                    <h2 style="font-size: 30px; color: #2E7D32;">✨ แก้มเปิดอ่านครบทุกฉบับแล้ว ✨</h2>
+                    <p class="text-lg text-gray-700 mt-5">
+                        นี่คือตอนจบของกล่องของขวัญจดหมายรักฉบับนี้<br>
+                        ขอบคุณที่อยู่ด้วยกันมาตลอด...<br>
+                    
+                    </p>
+                    <div class="letter-signature" style="font-size: 40px; text-align: center; margin-top: 30px;">
+                        รักที่สุดเลยจ้า
+                    </div>
+                    <button onclick="location.reload()" class="confirm-btn" style="margin-top: 30px; background: linear-gradient(135deg, #E57373 0%, #EF5350 100%); box-shadow: 0 4px #C62828;">
+                        ออกจากเว็บไซต์ จุ๊บๆๆๆ
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(finalModal);
+            
+            if (bgMusic) {
+                bgMusic.pause();
+            }
+        }
+
+        function closeModal(event, modalId) {
+            const modal = document.getElementById(modalId);
+            
+            if (event && event.target !== modal && modal.contains(event.target)) return;
+
+            modal.classList.remove('show');
+            if (modalId === 'letter-modal') {
+                backBtn.classList.remove('show');
+            }
+            if (modalId === 'password-modal') {
+                window.currentSecretIndex = -1;
+                window.currentCardElement = null;
+                passwordInput.value = '';
+                passwordError.textContent = '';
+            }
+        }
+
+        function backToLetters() {
+            closeModal(null, 'letter-modal');
+        }
+
+    </script>
+</body>
+</html>
